@@ -1,13 +1,12 @@
 # Acoustic Modem
 
-Browser transmitter for a phone-to-laptop acoustic modem.
+Browser transmitter for a device-to-device acoustic modem.
 
 ## What it does
 
-- Converts printable ASCII text into fixed audio tones
+- Converts  ASCII text into fixed audio tones of frequency 17kHZ+.
 - Plays the tones directly through the browser with the Web Audio API
-- Exports the same sequence as a WAV file for testing
-- Documents the GNU Radio receiver layout for live decoding
+- Documents the GNU Radio receiver layout for live decoding.
 
 ## Tone mapping
 
