@@ -1,0 +1,332 @@
+:root {
+  color-scheme: dark;
+  --bg: #0a1020;
+  --bg-2: #11192f;
+  --panel: rgba(15, 21, 40, 0.82);
+  --panel-border: rgba(161, 181, 255, 0.18);
+  --text: #edf1ff;
+  --muted: #a8b3d4;
+  --accent: #7ce7c7;
+  --accent-2: #8f9cff;
+  --danger: #ff8d8d;
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(124, 231, 199, 0.18), transparent 30%),
+    radial-gradient(circle at 85% 15%, rgba(143, 156, 255, 0.2), transparent 25%),
+    linear-gradient(160deg, var(--bg), var(--bg-2));
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+  opacity: 0.35;
+}
+
+.shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 36px 0 56px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+  margin-bottom: 20px;
+}
+
+.hero__copy,
+.hero__panel,
+.card {
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+.hero__copy {
+  padding: 34px;
+  border-radius: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--accent);
+  font: 600 0.75rem/1.2 "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+h1,
+h2,
+strong {
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 6vw, 5.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.lede {
+  margin: 18px 0 0;
+  max-width: 58ch;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+.hero__panel {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 22px;
+  border-radius: 28px;
+}
+
+.stat {
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.stat span,
+.label,
+.card__header p,
+.card p {
+  color: var(--muted);
+}
+
+.stat span,
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font: 600 0.76rem/1.2 "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.stat strong {
+  display: block;
+  font-size: 1.35rem;
+}
+
+.card {
+  border-radius: 24px;
+  padding: 24px;
+}
+
+.composer {
+  margin-bottom: 20px;
+}
+
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.card__header h2,
+.grid h2 {
+  margin: 0 0 8px;
+  font-size: 1.45rem;
+}
+
+.card__header p,
+.card p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.pill {
+  align-self: start;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(124, 231, 199, 0.12);
+  color: var(--accent);
+  font: 600 0.8rem/1 "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  border: 1px solid rgba(124, 231, 199, 0.25);
+}
+
+.field {
+  display: grid;
+  gap: 10px;
+}
+
+.field span {
+  color: var(--muted);
+  font: 600 0.8rem/1.2 "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+textarea {
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(6, 10, 22, 0.75);
+  color: var(--text);
+  font: 500 1rem/1.6 "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  resize: vertical;
+  outline: none;
+}
+
+textarea:focus {
+  border-color: rgba(124, 231, 199, 0.55);
+  box-shadow: 0 0 0 4px rgba(124, 231, 199, 0.12);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.button {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  border-radius: 14px;
+  padding: 12px 16px;
+  font: 600 0.95rem/1 "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  cursor: pointer;
+  transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(124, 231, 199, 0.42);
+  background: rgba(124, 231, 199, 0.08);
+}
+
+.button--primary {
+  background: linear-gradient(135deg, rgba(124, 231, 199, 0.22), rgba(143, 156, 255, 0.18));
+  border-color: rgba(124, 231, 199, 0.3);
+}
+
+.meters {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 18px;
+}
+
+.sequence,
+.preview,
+.formula {
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.sequence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 68px;
+  padding: 12px;
+}
+
+.sequence span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: rgba(143, 156, 255, 0.14);
+  color: var(--text);
+  font: 600 0.92rem/1 "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+.sequence span.is-active {
+  background: rgba(124, 231, 199, 0.22);
+  box-shadow: 0 0 0 1px rgba(124, 231, 199, 0.45) inset;
+}
+
+.preview {
+  min-height: 68px;
+  padding: 14px 16px;
+  font: 500 0.95rem/1.6 "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  color: var(--text);
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.formula {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
+.formula code {
+  display: block;
+  color: var(--accent);
+  font: 600 0.94rem/1.6 "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .grid,
+  .meters {
+    grid-template-columns: 1fr;
+  }
+
+  .card__header {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  .shell {
+    width: min(100% - 20px, 1120px);
+    padding-top: 20px;
+  }
+
+  .hero__copy,
+  .hero__panel,
+  .card {
+    border-radius: 22px;
+    padding: 18px;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 14vw, 4rem);
+  }
+}

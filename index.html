@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Acoustic Modem Transmitter</title>
+    <meta
+      name="description"
+      content="Browser-based acoustic modem transmitter that maps printable ASCII to fixed audio tones."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="hero__copy">
+          <p class="eyebrow">Phone to laptop acoustic modem</p>
+          <h1>Turn text into tones in the browser.</h1>
+          <p class="lede">
+            Type printable ASCII, play the tones through the phone speaker, and
+            decode them on the laptop with GNU Radio.
+          </p>
+        </div>
+
+        <div class="hero__panel">
+          <div class="stat">
+            <span>Symbol time</span>
+            <strong>40 ms</strong>
+          </div>
+          <div class="stat">
+            <span>Gap</span>
+            <strong>8 ms</strong>
+          </div>
+          <div class="stat">
+            <span>Base tone</span>
+            <strong>17000 Hz</strong>
+          </div>
+          <div class="stat">
+            <span>Step</span>
+            <strong>30 Hz</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="card composer">
+        <div class="card__header">
+          <div>
+            <h2>Transmitter</h2>
+            <p>Printable ASCII only. Unsupported characters are converted to spaces.</p>
+          </div>
+          <div class="pill" id="statusPill">Idle</div>
+        </div>
+
+        <label class="field">
+          <span>Message</span>
+          <textarea id="messageInput" rows="6" spellcheck="false">HELLO WORLD</textarea>
+        </label>
+
+        <div class="controls">
+          <button class="button button--primary" id="playButton" type="button">Play tones</button>
+          <button class="button" id="stopButton" type="button">Stop</button>
+          <button class="button" id="downloadButton" type="button">Download WAV</button>
+        </div>
+
+        <div class="meters">
+          <div>
+            <span class="label">Current sequence</span>
+            <div class="sequence" id="sequencePreview"></div>
+          </div>
+          <div>
+            <span class="label">Frequency preview</span>
+            <div class="preview" id="frequencyPreview">Type text to see the tone mapping.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h2>Mapping</h2>
+          <p>
+            Each printable ASCII character maps to one fixed frequency using
+            <strong>17000 Hz + (ASCII - 32) × 30 Hz</strong>.
+          </p>
+          <div class="formula">
+            <code>idx = code - 32</code>
+            <code>freq = 17000 + idx × 30</code>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Decode rule</h2>
+          <p>
+            The receiver measures the dominant FFT peak in each 40 ms window,
+            snaps it to the nearest allowed tone, and maps it back to a
+            character.
+          </p>
+          <div class="formula">
+            <code>idx = round((freq - 17000) / 30)</code>
+            <code>char = chr(32 + idx)</code>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
